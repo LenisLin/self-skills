@@ -4,12 +4,15 @@ Personal Codex skills that can be reused across projects.
 
 ## Included Skills
 
-- `scientific-objectivity-tone`: objective, evidence-bounded scientific writing and review tone guidance.
+- `continuous-plan-confirmation`: keeps Codex in a planning confirmation loop until explicit execution or finalization.
+- `scientific-objectivity-tone`: keeps scientific writing objective, evidence-bounded, and anti-hype.
 
 ## Repository Layout
 
 ```text
 skills/
+  continuous-plan-confirmation/
+    SKILL.md
   scientific-objectivity-tone/
     SKILL.md
     references/
@@ -18,10 +21,17 @@ skills/
 
 ## Local Install
 
-Copy a skill directory into `~/.codex/skills/` with the same folder name. For example:
+Install all skills:
 
 ```bash
-mkdir -p ~/.codex/skills/scientific-objectivity-tone/references
-cp skills/scientific-objectivity-tone/SKILL.md ~/.codex/skills/scientific-objectivity-tone/SKILL.md
-cp skills/scientific-objectivity-tone/references/authoritative-guidance.md ~/.codex/skills/scientific-objectivity-tone/references/authoritative-guidance.md
+mkdir -p ~/.codex/skills
+cp -r skills/continuous-plan-confirmation ~/.codex/skills/
+cp -r skills/scientific-objectivity-tone ~/.codex/skills/
+```
+
+Install one skill:
+
+```bash
+mkdir -p ~/.codex/skills
+cp -r skills/<skill-name> ~/.codex/skills/
 ```
