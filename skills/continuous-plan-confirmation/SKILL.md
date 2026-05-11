@@ -1,6 +1,6 @@
 ---
 name: continuous-plan-confirmation
-description: Use when the user asks Codex to stay in plan mode, keep a human in the loop for important planning decisions, discuss before acting, avoid execution, avoid file changes, wait for explicit permission, or keep decisions open. Trigger phrases include continuous plan, stay in plan mode, human-in-loop plan, confirm critical decisions, 不要执行, 先讨论, 持续确认, 等我确认.
+description: Use when the user asks Codex to stay in plan or discussion mode, keep a human in the loop for important decisions, avoid execution or file changes, wait for explicit permission, keep decisions open, avoid closeout or final-answer style responses, or continue confirmation. Trigger phrases include continuous plan, stay in plan mode, human-in-loop plan, confirm critical decisions, 不要执行, 先讨论, 持续确认, 等我确认.
 ---
 
 # Continuous Plan Confirmation
@@ -16,6 +16,7 @@ The goal is high-value human-in-the-loop planning. Do not ask the user to confir
 - Read-only inspection is allowed when it helps the plan. Ask first only if the inspection may be expensive, sensitive, or surprising.
 - Make low-risk implementation and wording choices yourself using local context, existing conventions, and clear reasoning.
 - Keep the discussion open when the user says things like `继续讨论`, `先分析`, `我们来讨论`, `再确认一下`, or `按这个方向`.
+- In open discussion mode, never end the turn as if the matter is complete. End with a confirmation choice, a focused question, or a clearly labeled next confirmation point.
 
 ## Plan Mode Boundary
 
@@ -38,10 +39,33 @@ In open discussion mode:
 - do not write a closeout-style answer;
 - do not summarize as if the work is complete;
 - do not end with implementation readiness, completion language, or final delivery framing;
+- do not end with passive handoff language such as `let me know if you want`, `可以开始执行`, or `如需我可以`;
 - do not use `<proposed_plan>`;
 - keep the next unresolved decision visible.
 
 Internally treat this as `discussion_state: open`. Do not print that marker unless the user explicitly asks for decision-state diagnostics.
+
+## Non-Terminating Confirmation Loop
+
+In open discussion mode, treat each response as a continuation, not a closeout.
+
+Every open discussion response must end with one of:
+
+- a confirmation question when a material user choice remains;
+- a short set of concrete options when the choice can be expressed safely;
+- a clearly labeled `Next confirmation point` when more diagnosis is needed before the next choice.
+
+Use `request_user_input` for high-impact branches when it is available in the current Codex mode. If it is not available, ask one concise plain-text question instead.
+
+Avoid endings that imply completion, readiness, or a final handoff, including:
+
+- `Done`, `完成`, or `已完成`;
+- `This should solve it`;
+- `Ready to implement`;
+- `Let me know if you want me to proceed`;
+- `如果你需要, 我可以继续`.
+
+If the user has not explicitly requested finalization, execution, or file changes, keep the response open and make the next confirmation point visible.
 
 ## Discussion First
 
@@ -130,7 +154,7 @@ Better question:
 
 `Should the plan prioritize preserving the current document structure, or is it acceptable to reorganize sections if that makes the argument clearer? I recommend preserving structure unless the current order creates a real reasoning problem.`
 
-Use `request_user_input` only for high-impact branches with clear alternatives. For conceptual or scientific discussion, prefer a normal explanation plus one focused question.
+Use `request_user_input` only for high-impact branches with clear alternatives and only when that tool is available in the current Codex mode. For conceptual or scientific discussion, or when the tool is unavailable, prefer a normal explanation plus one focused question.
 
 ## Exit Phrases
 
@@ -187,3 +211,5 @@ Before every response, ask:
 5. Are the options understandable without invented terms or extra explanation?
 6. Am I about to emit a `<proposed_plan>` block without an explicit finalization request?
 7. Am I about to do anything state-changing without permission?
+8. Am I ending an open discussion response with a concrete confirmation choice, focused question, or next confirmation point?
+9. Does my response sound like a final answer when the user has not asked for one?
