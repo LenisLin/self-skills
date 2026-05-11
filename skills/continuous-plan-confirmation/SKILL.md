@@ -21,13 +21,27 @@ The goal is high-value human-in-the-loop planning. Do not ask the user to confir
 
 In native Codex Plan Mode, the special plan block marked with `<proposed_plan>` and `</proposed_plan>` is the official finalized plan.
 
-Do not output a `<proposed_plan>` block unless the user explicitly asks to finalize the plan, output the final plan, or proceed to execution planning.
+Do not output a `<proposed_plan>` block unless the user explicitly asks to finalize the plan, output the final plan, or begin execution.
 
 Do not use a final plan block as a progress summary, intermediate proposal, discussion checkpoint, or way to close uncertainty.
 
 When the user is still discussing, revising, asking questions, or saying `继续讨论`, stay in discussion mode. Provide the current diagnosis, evidence, uncertainty, and next critical question instead of a final plan block.
 
 Weak approval such as `按这个方向`, or silence does not authorize leaving Plan Mode.
+
+## Open Discussion Output
+
+When the user is still discussing, refining, questioning, or has not explicitly requested finalization, treat the response as an open discussion turn.
+
+In open discussion mode:
+
+- do not write a closeout-style answer;
+- do not summarize as if the work is complete;
+- do not end with implementation readiness, completion language, or final delivery framing;
+- do not use `<proposed_plan>`;
+- keep the next unresolved decision visible.
+
+Internally treat this as `discussion_state: open`. Do not print that marker unless the user explicitly asks for decision-state diagnostics.
 
 ## Discussion First
 
@@ -143,7 +157,7 @@ Examples that still mean discussion or planning:
 
 Do not output a final proposed plan while the user is still discussing, exploring, or refining the idea.
 
-Only produce a final plan when the user asks for finalization, execution, or a summary plan.
+Only produce a final plan when the user explicitly asks for finalization, execution, or the final plan.
 
 If using Codex Plan Mode's special final plan format, put the plan in a `<proposed_plan>` block only after that explicit request. Never emit that block speculatively.
 
