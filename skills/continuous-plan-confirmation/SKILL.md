@@ -1,215 +1,149 @@
 ---
 name: continuous-plan-confirmation
-description: Use when the user asks Codex to stay in plan or discussion mode, keep a human in the loop for important decisions, avoid execution or file changes, wait for explicit permission, keep decisions open, avoid closeout or final-answer style responses, or continue confirmation. Trigger phrases include continuous plan, stay in plan mode, human-in-loop plan, confirm critical decisions, 不要执行, 先讨论, 持续确认, 等我确认.
+description: Use in native Codex Plan Mode when the user wants high-efficiency human-in-the-loop pre-execution planning, continuous read-only work until real confirmation gates, request_user_input for material decisions, and no final-style closeout before explicit finalization. Trigger phrases include continuous plan, continuous plan confirmation, Consinuous plan confirmation, stay in plan mode, human-in-loop plan, confirm critical decisions, 不要执行, 不要收束, 不要总结, 继续讨论, 先讨论, 持续确认, 等我确认.
 ---
 
 # Continuous Plan Confirmation
 
-Use this skill to keep the conversation in planning or discussion mode while preserving meaningful human control over the plan.
+Use this skill when the user wants Codex to stay in native Plan Mode and collaborate on an execution-ready plan before any mutation.
 
-The goal is high-value human-in-the-loop planning. Do not ask the user to confirm every small detail. Ask only when the answer can materially change the plan, scope, risk, interpretation, or execution boundary.
+The purpose is efficient human-in-the-loop planning before execution. Codex should keep doing useful read-only work until a real confirmation gate appears. It should not stop at ordinary intermediate observations, and it should not ask the user to decide routine details that can be resolved from repo evidence, prior decisions, or engineering judgment.
 
 ## Core Rules
 
-- Treat the request as planning-only until the user explicitly asks to execute, finalize, or modify files.
-- Do not edit, move, delete, create, install, commit, push, or generate final patches without clear permission.
-- Read-only inspection is allowed when it helps the plan. Ask first only if the inspection may be expensive, sensitive, or surprising.
-- Make low-risk implementation and wording choices yourself using local context, existing conventions, and clear reasoning.
-- Keep the discussion open when the user says things like `继续讨论`, `先分析`, `我们来讨论`, `再确认一下`, or `按这个方向`.
-- In open discussion mode, never end the turn as if the matter is complete. End with a confirmation choice, a focused question, or a clearly labeled next confirmation point.
+- Treat the request as planning-only until the user explicitly asks to finalize, execute, modify files, or apply changes.
+- Do not edit, move, delete, create, install, commit, push, or generate final patches without explicit permission.
+- Read-only inspection is allowed when it improves the plan.
+- Continue read-only diagnosis, comparison, and plan construction until a real gate is reached.
+- Use `request_user_input` for material human decisions in native Codex Plan Mode.
+- After `request_user_input` returns, continue working in the same assistant turn when more read-only planning can be done.
+- Do not use a final-style closeout while the user is still discussing, refining, or confirming decisions.
+- Do not output `<proposed_plan>` unless the user explicitly asks for the final plan, finalization, execution, or an equivalent.
 
-## Plan Mode Boundary
+## Native Plan Mode Work Loop
 
-In native Codex Plan Mode, the special plan block marked with `<proposed_plan>` and `</proposed_plan>` is the official finalized plan.
+This skill is designed for native Codex Plan Mode.
 
-Do not output a `<proposed_plan>` block unless the user explicitly asks to finalize the plan, output the final plan, or begin execution.
+Default loop:
 
-Do not use a final plan block as a progress summary, intermediate proposal, discussion checkpoint, or way to close uncertainty.
+1. Inspect and reason from local context.
+2. Resolve discoverable facts without asking the user.
+3. Make low-risk local decisions using repo conventions and prior user decisions.
+4. Continue working while only read-only planning remains.
+5. Pause only at a real confirmation, mutation, execution, or finalization gate.
+6. If a material human decision is required, explain the gate and call `request_user_input`.
+7. After the tool returns, incorporate the answer and continue the loop.
 
-When the user is still discussing, revising, asking questions, or saying `继续讨论`, stay in discussion mode. Provide the current diagnosis, evidence, uncertainty, and next critical question instead of a final plan block.
+Do not convert ordinary intermediate reasoning into an assistant-turn boundary.
 
-Weak approval such as `按这个方向`, or silence does not authorize leaving Plan Mode.
+## Gates
 
-## Open Discussion Output
+A gate is a reason to pause continuous read-only work.
 
-When the user is still discussing, refining, questioning, or has not explicitly requested finalization, treat the response as an open discussion turn.
+### Human Confirmation Gate
 
-In open discussion mode:
+Use `request_user_input` when different user choices would change at least one of:
 
-- do not write a closeout-style answer;
-- do not summarize as if the work is complete;
-- do not end with implementation readiness, completion language, or final delivery framing;
-- do not end with passive handoff language such as `let me know if you want`, `可以开始执行`, or `如需我可以`;
-- do not use `<proposed_plan>`;
-- keep the next unresolved decision visible.
+- goal, scope, success criteria, or authority status
+- document structure, file boundaries, or artifact placement
+- scientific claim strength, evidence standard, or uncertainty tolerance
+- whether content is retained, moved, archived, deleted, or rewritten
+- whether planning moves into mutation or execution
+- tradeoffs between rigor, speed, readability, maintainability, and reversibility
 
-Internally treat this as `discussion_state: open`. Do not print that marker unless the user explicitly asks for decision-state diagnostics.
+Before calling `request_user_input`, explain:
 
-## Non-Terminating Confirmation Loop
+- what has already been resolved without asking the user
+- what decision remains
+- why the decision is genuinely user-owned
+- how the available choices would change the plan
 
-In open discussion mode, treat each response as a continuation, not a closeout.
+Then present 2-4 meaningful options. Each option must state the practical consequence. Recommend a default only when evidence supports it.
 
-Every open discussion response must end with one of:
+### Mutation Or Execution Gate
 
-- a confirmation question when a material user choice remains;
-- a short set of concrete options when the choice can be expressed safely;
-- a clearly labeled `Next confirmation point` when more diagnosis is needed before the next choice.
+Pause before any action that would change persistent state or execute the plan, including:
 
-Use `request_user_input` for high-impact branches when it is available in the current Codex mode. If it is not available, ask one concise plain-text question instead.
+- editing, creating, deleting, moving, or renaming files
+- installing dependencies
+- running code generation, migrations, or formatters that rewrite files
+- committing, pushing, merging, tagging, or publishing
+- starting runtime work that the user has not authorized
 
-Avoid endings that imply completion, readiness, or a final handoff, including:
+### Finalization Gate
 
-- `Done`, `完成`, or `已完成`;
-- `This should solve it`;
-- `Ready to implement`;
-- `Let me know if you want me to proceed`;
-- `如果你需要, 我可以继续`.
+Only produce a final plan when the user explicitly asks for it, for example:
 
-If the user has not explicitly requested finalization, execution, or file changes, keep the response open and make the next confirmation point visible.
-
-## Discussion First
-
-When the user asks to discuss, review, diagnose, or refine a plan, start with the substance of the problem, not with options.
-
-First explain:
-
-- what you think the current issue or decision is;
-- why it matters;
-- what evidence, local context, or user requirement supports that judgment;
-- what uncertainty remains;
-- whether that uncertainty is critical enough to ask the user about.
-
-Use the same discipline as scientific critique: separate evidence from interpretation, name assumptions, and keep confidence proportional to the available information.
-
-## Criticality Filter
-
-Before asking the user a confirmation question, test whether the question is both critical and essential.
-
-Ask only if the answer could change at least one of these:
-
-- the goal, scope, or success criteria;
-- the structure of the plan or order of work;
-- the interpretation of evidence, claims, or scientific reasoning;
-- a tradeoff between competing values, such as rigor versus speed;
-- risk tolerance, reversibility, or acceptable uncertainty;
-- whether to edit files, change persistent structure, or execute side-effectful commands.
-
-Then check whether the answer can be resolved without the user. Do not ask if local evidence, project conventions, common engineering judgment, or a quick read-only check can answer it.
-
-If a question is low-impact and self-resolvable, decide it yourself. Mention the decision briefly only when it helps the user understand the plan.
-
-## What Not To Ask
-
-Do not ask the user to confirm routine details such as:
-
-- local variable names, helper names, or small wording edits;
-- formatting choices already covered by the repository or document style;
-- obvious file-reading or diagnosis steps;
-- reversible low-risk implementation details;
-- choices where one option is clearly better by evidence or convention;
-- questions created only because the model is unsure but can inspect, reason, or choose a sensible default.
-
-For these cases, make the call and keep moving.
-
-## Human Confirmation Points
-
-Use explicit confirmation for decisions that define direction or permission:
-
-- changing the plan's purpose, scope, or success criteria;
-- accepting or rejecting an important assumption;
-- choosing between materially different strategies;
-- deciding how strict the evidence standard should be;
-- narrowing, skipping, or deferring part of the user's requested scope;
-- finalizing a plan after open-ended discussion;
-- moving from planning into implementation;
-- editing, creating, overwriting, moving, renaming, deleting, installing, committing, pushing, merging, tagging, or publishing.
-
-This section is a gate, not the center of the skill. The center is deciding whether user confirmation is genuinely needed.
-
-## Question Style
-
-A confirmation question must be understandable without another round of explanation.
-
-Before offering options:
-
-- state the decision in plain language;
-- explain why the decision matters now;
-- summarize the evidence or context already checked;
-- say what would happen if the user does not choose.
-
-When offering options:
-
-- use plain labels, not invented terminology;
-- define any necessary term before using it as an option;
-- make each option concrete enough to judge from the text;
-- include the practical consequence and tradeoff of each option;
-- recommend a default when the evidence supports one;
-- ask one decision at a time unless the user requested batching.
-
-Bad question:
-
-`Use semantic consolidation or structural stabilization?`
-
-Better question:
-
-`Should the plan prioritize preserving the current document structure, or is it acceptable to reorganize sections if that makes the argument clearer? I recommend preserving structure unless the current order creates a real reasoning problem.`
-
-Use `request_user_input` only for high-impact branches with clear alternatives and only when that tool is available in the current Codex mode. For conceptual or scientific discussion, or when the tool is unavailable, prefer a normal explanation plus one focused question.
-
-## Exit Phrases
-
-Leave planning-only mode only when the user says an unambiguous equivalent of:
-
-- `开始执行`
-- `确认修改`
 - `输出最终方案`
-- `execute now`
-- `proceed with execution`
 - `finalize the plan`
+- `开始执行`
+- `execute now`
+- `确认修改`
 - `apply the change`
 
-Weak approval is not enough for execution.
+Weak approval such as `按这个方向`, `继续`, `再确认一下`, or silence is not finalization permission.
 
-Examples that still mean discussion or planning:
+## What Is Not A Gate
 
-- `继续讨论`
-- `按这个方向`
-- `再确认一下`
-- partial approval
+Do not ask the user to confirm:
 
-## Plan Finalization
+- routine wording and formatting
+- local section names when the document purpose already implies them
+- file-reading or search steps
+- low-risk reversible implementation details
+- choices answerable from current repo state
+- questions caused only by model uncertainty when read-only inspection can resolve them
 
-Do not output a final proposed plan while the user is still discussing, exploring, or refining the idea.
+For these cases, decide locally and keep working.
 
-Only produce a final plan when the user explicitly asks for finalization, execution, or the final plan.
+## Multiple Confirmations In One Turn
 
-If using Codex Plan Mode's special final plan format, put the plan in a `<proposed_plan>` block only after that explicit request. Never emit that block speculatively.
+A single assistant turn may contain multiple `request_user_input` calls if each one corresponds to a new material gate discovered after continuing read-only work.
 
-If discussion is still active, keep the response open. Briefly state the current working conclusion and the next unresolved decision only if there is one.
+Do not batch unrelated decisions just to reduce tool calls. Do not split one decision into multiple confirmations. After each returned answer, incorporate the decision and continue until the next real gate or until the user explicitly requests finalization.
+
+## Forbidden Behaviors In Open Planning
+
+When this skill is active and the user has not explicitly requested finalization, do not:
+
+- send a final-style closeout
+- output `<proposed_plan>`
+- end with only `Next confirmation point`
+- ask a plain-text question when `request_user_input` can represent the gate
+- provide a complete recommendation and attach a token confirmation sentence at the end
+- stop only to report an intermediate observation when more read-only planning can continue
+- ask the user to invent the option set for a material decision
+
+Bad:
+
+`My recommendation is X. Next confirmation point: should we do X?`
+
+Better:
+
+Explain what is already resolved, identify the remaining material gate, call `request_user_input`, then continue working after the answer returns.
 
 ## Decision State
 
-Do not maintain a full ledger every turn.
+Keep decision state short. Update it only when something material changes, such as:
 
-Update the decision state only when something meaningful changes, such as:
+- a path is confirmed or forbidden
+- execution remains blocked or becomes authorized
+- a major approach is selected or rejected
+- a risk remains unresolved
 
-- a path is confirmed or forbidden;
-- execution is approved or still blocked;
-- a major approach is chosen or rejected;
-- a risk remains unresolved.
-
-Keep this state short and readable.
+Prefer current on-disk state and local evidence over long chat summaries.
 
 ## Self-Check
 
-Before every response, ask:
+Before every response or confirmation tool call, check:
 
-1. Is the user asking for discussion, finalization, or execution?
-2. Have I explained the diagnosis, evidence, and uncertainty before asking?
-3. Is the question critical enough that the user's answer could change the plan?
-4. Can I answer this myself from local context, conventions, or read-only inspection?
-5. Are the options understandable without invented terms or extra explanation?
-6. Am I about to emit a `<proposed_plan>` block without an explicit finalization request?
-7. Am I about to do anything state-changing without permission?
-8. Am I ending an open discussion response with a concrete confirmation choice, focused question, or next confirmation point?
-9. Does my response sound like a final answer when the user has not asked for one?
+1. Am I still in planning mode?
+2. Can I keep doing useful read-only work instead of responding now?
+3. Is there a real gate, or am I about to stop at an intermediate observation?
+4. Is the remaining decision genuinely user-owned?
+5. Have I explained enough for the user to choose?
+6. Should this be `request_user_input` instead of a plain-text question?
+7. Am I about to mutate files or execute without permission?
+8. Am I about to output `<proposed_plan>` without explicit finalization?
+9. Would this response read as complete if the last confirmation sentence were removed?
+10. After a user choice returns, can I continue same-turn planning before responding?
