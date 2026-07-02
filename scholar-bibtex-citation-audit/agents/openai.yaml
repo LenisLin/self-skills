@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scholar BibTeX Citation Audit"
+  short_description: "按 Scholar 更新 BibTeX 并审查引用一致性"
+  default_prompt: "Use $scholar-bibtex-citation-audit to refresh references.bib with Google Scholar BibTeX, restore citation keys, and audit LaTeX citation consistency."
