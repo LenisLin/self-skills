@@ -1,108 +1,171 @@
 ---
-name: precise-document-modification-planning
-description: Use when the user asks for a precise plan before modifying documents, prompts, specs, design docs, README files, workflow docs, config docs, or other text-based project materials.
+name: precise-project-modification-planning
+description: Use when the user asks for a precise plan or review before modifying documents, code, prompts, specs, README files, workflow docs, config docs, package APIs, migration plans, cleanup plans, or other text-based project materials.
 ---
 
-# Precise Document Modification Planning
+# Precise Project Modification Planning
 
-Produce a concise, executable modification plan for document changes. The plan must be grounded in the existing document content, specify exact edits, reduce redundancy, and convert stable constraints or repeated procedures into clear workflows or templates.
+Produce a concise, executable modification plan for document or code changes. The plan must be grounded in the existing files, identify exact write locations, state what will change, define the target result, reduce redundancy, and preserve project semantics.
+
+Use this skill when the user asks for a plan, review, migration check, cleanup plan, or precise edit proposal before making changes.
 
 ## Core Requirements
 
-1. Anchor every planned edit in the existing document.
-   - Read the target section and nearby context before planning edits.
-   - Use the current heading, paragraph, list item, table row, or anchor text to identify where the edit applies.
+1. Ground every edit in existing content.
+
+   - Inspect the target file and nearby context before planning edits.
+   - Identify each edit by exact file path and stable location.
+   - For documents, use headings, paragraphs, list items, table rows, or anchor text.
+   - For code, use modules, classes, functions, methods, imports, exports, tests, config keys, or symbol names.
    - Modify existing content first when it already covers the same purpose.
-   - Add new content only when the existing document has no suitable place for the intended meaning.
+   - Add new content only when no existing location can carry the intended meaning cleanly.
 
-2. State the exact modification.
-   For each planned edit, specify:
-   - File path.
-   - Exact location.
-   - Current relevant content.
-   - Planned action: replace, merge, move, split, remove, or add.
-   - Target content or target structure.
-   - Reason for the change.
+2. Make every edit patch-grade specific.
 
-3. Reduce redundancy and parallel instructions.
-   - Merge overlapping paragraphs, repeated rules, duplicated examples, and near-equivalent workflows.
-   - Keep one canonical statement for each rule, definition, or process.
-   - Move supporting details under the canonical statement instead of repeating them elsewhere.
-   - Preserve useful distinctions when similar text serves different purposes.
+   For each planned edit, provide:
 
-4. Prefer positive, direct constraints.
-   - Describe the desired behavior directly.
-   - Use exclusionary wording only when it marks a real boundary, exception, risk, or invalid case.
-   - Replace broad negative instructions with affirmative requirements where possible.
-   - Keep boundary conditions short and specific.
+   - `File:`
+   - `Location:`
+   - `Current content:`
+   - `Action:` replace, merge, move, split, remove, add, rename, refactor, document, test, or deprecate.
+   - `Target content / structure:`
+   - `Reason:`
+   - `Validation:`
 
-5. Use human-readable language.
-   - Use short, precise sentences.
-   - Prefer concrete nouns and verbs.
-   - Keep each instruction focused on one action or rule.
-   - Avoid dense meta-language, stacked qualifiers, and vague evaluation words.
+   The target result must be specific enough that another editor can apply it without guessing.
+
+3. Reduce redundancy and conflict.
+
+   - Keep one canonical place for each rule, workflow, function, definition, API behavior, or project convention.
+   - Merge overlapping content into the canonical location.
+   - Remove or replace parallel statements after their useful meaning is retained.
+   - Preserve separate content only when it has a distinct purpose, audience, behavior, or domain meaning.
+   - State where removed content is retained or why it is obsolete.
+
+4. Use short, precise, human-readable language.
+
+   - Use concrete nouns and verbs.
+   - Keep each sentence focused on one action or rule.
+   - Prefer direct positive requirements.
+   - Use exclusionary wording only for real boundaries, invalid cases, compatibility risks, or necessary exceptions.
+   - Replace vague wording with operational wording.
    - Use examples only when they clarify execution.
 
-6. Convert hard constraints and repeated procedures into workflows or templates.
-   - Turn stable procedures into numbered steps, checklists, or reusable templates.
-   - Include confirmation points when correctness depends on existing content, user intent, or project conventions.
-   - Keep workflows compact enough to be followed during editing.
-   - Separate required steps from optional cleanup.
+5. Convert hard constraints into workflows or templates.
 
-7. Keep the plan proportional.
-   - Focus on edits needed for the requested document change.
-   - Mention conflicts, outdated text, or duplicates only when they affect the planned edit.
-   - Avoid broad document audits unless the user explicitly asks for one.
-   - Inspect additional files only when needed to resolve location, meaning, duplication, or consistency.
+   Turn stable or repeated procedures into:
 
-8. Preserve document intent and structure.
-   - Keep terminology consistent with the existing document unless the plan explicitly renames it.
-   - Maintain the document’s audience, level of detail, and ordering logic.
-   - When replacing text, preserve useful information from the original content.
-   - When removing text, explain where its useful meaning is retained or why it is obsolete.
+   - Numbered steps.
+   - Checklists.
+   - Review gates.
+   - Tables.
+   - Reusable templates.
+
+   Each workflow should include required steps, confirmation points, expected output, and validation checks. Separate required work from optional cleanup.
+
+6. Handle code changes explicitly.
+
+   For code edits, identify affected:
+
+   - Modules.
+   - Classes, functions, methods, or scripts.
+   - Current and target signatures.
+   - Imports and exports.
+   - Public APIs.
+   - Tests.
+   - Documentation.
+   - Examples.
+   - Compatibility impact.
+
+   Classify compatibility as one of:
+
+   - `Internal-only change`
+   - `Stable API, implementation cleanup`
+   - `Public API rename with migration path`
+   - `Deprecated wrapper retained`
+   - `Duplicate removed`
+   - `Behavior change requiring explicit justification`
+
+7. Add sufficient code comments and docstrings.
+
+   For code plans, specify comments or docstrings to add or update.
+
+   Script headers should state:
+
+   - Purpose.
+   - Expected inputs.
+   - Produced outputs.
+   - Main side effects.
+   - Required assumptions.
+
+   Public functions and classes should document:
+
+   - Purpose.
+   - Parameters.
+   - Returns.
+   - Raised errors when relevant.
+   - Domain meaning when relevant.
+   - Shape, unit, coordinate, layer, key, or metadata assumptions when relevant.
+
+   Key variables should have short comments when they encode domain assumptions, units, shapes, axes, coordinate systems, metadata keys, thresholds, or non-obvious algorithm choices.
+
+   Comments should explain intent, meaning, and assumptions. Obvious operations should remain uncluttered.
+
+8. Preserve semantics and flexibility.
+
+   For domain, scientific, analysis, or package API changes, confirm:
+
+   - Input object type and required fields.
+   - Output object type and produced fields.
+   - Units, shapes, axes, coordinates, indexes, metadata keys, and data layers.
+   - Defaults and override points.
+   - User-facing API meaning.
+   - Statistical, mathematical, scientific, or project-specific assumptions.
+
+   Keep tools flexible:
+
+   - Separate validation, transformation, modeling, plotting, export, and I/O when they represent different user decisions.
+   - Use explicit parameters for thresholds, keys, methods, modes, and output destinations.
+   - Keep defaults documented and overrideable.
+   - Return stable, predictable objects.
+   - Use thin convenience wrappers around reusable core functions when needed.
+
+   Merge functions only when they have the same purpose, input assumptions, output contract, and domain meaning.
 
 ## Workflow
 
 1. Identify scope.
-   - List the document files and sections to inspect.
-   - State why each file or section is relevant.
-   - Mark any context that remains unresolved.
 
-2. Read and compare.
-   - Review the target section and adjacent context.
-   - Identify overlapping rules, repeated language, conflicting instructions, stale text, or unclear structure.
-   - Keep only findings that affect the modification plan.
+   - List files, sections, symbols, tests, docs, configs, and examples to inspect.
+   - State why each item matters.
+   - Mark unresolved context that affects correctness.
 
-3. Build the edit plan.
-   For each edit, provide:
-   - `File:`
-   - `Location:`
-   - `Current content:`
-   - `Action:`
-   - `Target content / structure:`
-   - `Reason:`
+2. Read and anchor existing content.
 
-4. Consolidate repeated content.
-   - Select the canonical location for each repeated rule or workflow.
-   - State which content will be merged, moved, replaced, or removed.
-   - Confirm that the resulting document has one clear source for each rule.
+   - Inspect the target location and adjacent context.
+   - Identify existing content that already carries the requested meaning.
+   - Identify duplicates, conflicts, stale content, or unclear structure.
+   - Record stable anchors for planned edits.
 
-5. Normalize language.
-   - Convert negative wording into direct positive requirements where suitable.
-   - Keep necessary boundaries explicit.
-   - Shorten sentences that combine multiple rules.
-   - Replace vague phrasing with operational wording.
+3. Compare behavior when migrating, merging, removing, or refactoring.
 
-6. Solidify workflows and templates.
-   - Convert repeated procedures, hard constraints, or review gates into stepwise workflows.
-   - Add checklist items or template fields where they improve repeatability.
-   - Place the workflow near the section where it will be used.
+   Confirm source and target behavior, input assumptions, output contract, domain meaning, defaults, override points, API effect, and test coverage.
+
+4. Build the modification plan.
+
+   For each edit, specify file, location, current content, action, target result, reason, and validation.
+
+5. Consolidate repeated content.
+
+   Select the canonical location, merge useful details, and remove parallel content.
+
+6. Normalize language.
+
+   Use short, direct, positive wording. Keep necessary boundaries explicit.
 
 7. Define validation.
-   - Check that every planned edit has a file path, location, action, and target result.
-   - Check that repeated content has a canonical location.
-   - Check that language is concise, positive where suitable, and human-readable.
-   - Check that the plan changes existing content instead of adding parallel instructions.
+
+   Check that every edit has a file path, exact location, target result, and validation step. Confirm that the plan modifies existing content before adding parallel instructions.
 
 ## Output Format
 
@@ -110,9 +173,33 @@ Use this format unless the user requests another structure.
 
 ### Scope
 
-- File:
-- Sections to inspect:
+- Files / sections / symbols to inspect:
 - Reason:
+- Unresolved context:
+
+### Existing Content Anchors
+
+- File:
+- Location:
+- Current content:
+- Existing meaning:
+- Why this anchor matters:
+
+### Plan Review
+
+Use this section when the user provides an existing migration, cleanup, or modification plan.
+
+- Proposed change:
+- Current source behavior:
+- Current target behavior:
+- Semantic correctness:
+- Flexibility impact:
+- Duplication impact:
+- Readability impact:
+- API / compatibility impact:
+- Tests / docs impact:
+- Decision:
+- Required revision:
 
 ### Modification Plan
 
@@ -122,6 +209,17 @@ Use this format unless the user requests another structure.
    - Action:
    - Target content / structure:
    - Reason:
+   - Validation:
+
+For code edits, include when relevant:
+
+   - Current signature:
+   - Target signature:
+   - Imports / exports affected:
+   - Tests affected:
+   - Docs affected:
+   - Comments / docstrings to add:
+   - Compatibility impact:
 
 ### Consolidation Plan
 
@@ -130,17 +228,26 @@ Use this format unless the user requests another structure.
 - Merge / move / replace / remove:
 - Resulting single source of truth:
 
-### Language Normalization
-
-- Negative or exclusionary wording to revise:
-- Positive target wording:
-- Necessary boundary conditions:
-
 ### Workflow / Template Updates
 
 - Constraint or repeated process:
 - Target workflow or template:
-- Confirmation points:
+- Required confirmation points:
+- Optional cleanup:
+
+### Semantic and Flexibility Review
+
+Use this section for code, analysis, API, scientific, or domain-specific changes.
+
+- Meaning to preserve:
+- Input assumptions:
+- Output contract:
+- Units / axes / shapes / keys:
+- Defaults and override points:
+- Functions to merge:
+- Functions to keep separate:
+- Flexibility risks:
+- Required tests or checks:
 
 ### Validation
 
@@ -149,4 +256,4 @@ Use this format unless the user requests another structure.
 
 ### Blocking Questions
 
-List only questions that prevent a correct edit plan.
+List only questions that prevent a correct edit plan. If there are none, write `None`.
