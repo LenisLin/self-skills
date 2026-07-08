@@ -16,10 +16,10 @@ A useful plan states the write location, the existing content, the target result
 1. Read the target file and nearby context.
 2. Identify existing headings, paragraphs, list items, table rows, symbols, imports, exports, config keys, tests, or conversation-confirmed freeze points that carry the requested meaning.
 3. Anchor each planned edit to an exact file path and stable location.
-4. For each edit, state the current content, action, target content or structure, reason, and validation.
+4. For each edit, state the current content, action, exact target wording to write, reason, and validation. Use structure-only descriptions only when the final wording depends on later user input or generated data, and state that dependency.
 5. When target content contains several hard constraints or confirmed freeze points, plan to rewrite that content as numbered steps, a checklist, confirmation points, or a reusable template.
 6. Merge or remove overlapping content after preserving useful meaning in one canonical location.
-7. Use short, concrete, positive language. Use exclusionary wording for real boundaries, invalid cases, compatibility risks, or necessary exceptions.
+7. Use short, concrete, positive language. Use exclusionary wording for real boundaries, invalid cases, compatibility risks, or necessary exceptions. Keep replaced, avoided, or poor examples out of the target document unless they are needed to define a boundary or exception.
 8. Ask only blocking questions that cannot be answered from local context.
 
 When reviewing an existing plan, apply the same workflow and return only the revisions needed to make the plan executable.
@@ -36,7 +36,7 @@ Use this English template unless the user requests a stricter structure.
 - Location:
 - Current content:
 - Action:
-- Target content / structure:
+- Exact target wording:
 - Reason:
 - Validation:
 
