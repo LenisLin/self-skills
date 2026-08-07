@@ -3,75 +3,26 @@ name: precise-project-modification-planning
 description: Use when the user asks for a precise plan before editing documents, code, prompts, specs, README files, workflow docs, config docs, APIs, or other project text.
 ---
 
-# Precise Project Modification Planning
+# Precise Modification Planning
 
-## Purpose
+Create concise, source-grounded plans before changing project text or code. Write in the user's requested language; otherwise, use the language of the request.
 
-Create concise, file-grounded modification plans before changing project text or code. Write every modification plan in English, even when the user's request is in another language.
+## Core Requirements
 
-A useful plan states the write location, the existing content, the target result, and the validation step for each edit. It favors modifying existing content over adding parallel instructions.
+1. Read each target file and its relevant local context before planning. Identify the current heading, paragraph, list item, symbol, function, configuration key, or test that carries the requested meaning.
+2. Map every edit to an exact file and line range. Give `Current text` as `path:Lx-Ly` plus the full existing text or a continuous range excerpt from its first line or sentence through `...` to its last line or sentence. Give `Target text` as the final `path:Lx-Ly` plus the complete replacement text.
+3. Identify each changed unit, its current role, detailed transformation, retained meaning, contract effect, and target structure. For code, state the control flow, data changes, error handling, interfaces, and required comments or docstrings.
+4. Complete a scientific-rigor, redundancy, conflict, and engineering review of the plan. Record the review result and the revisions it produces.
+5. Consolidate repeated or conflicting material into one canonical location. State the owner, the preserved meaning, and the updates that align related files with it.
+6. Write short, precise, reader-oriented text. Express required behavior directly. Describe exceptions only where they define an active boundary, invalid case, or compatibility requirement.
+7. Turn hard constraints and fixed procedures into numbered, confirmable steps or a reusable workflow template.
 
-## Required Workflow
+Ask a focused blocking question when the target state requires a user decision that the available project context cannot establish.
 
-1. Read the target file and nearby context.
-2. Identify existing headings, paragraphs, list items, table rows, symbols, imports, exports, config keys, tests, or conversation-confirmed freeze points that carry the requested meaning.
-3. Anchor each planned edit to an exact file path and stable location.
-4. For each edit, state the current content, action, exact target wording to write, reason, and validation. Use structure-only descriptions only when the final wording depends on later user input or generated data, and state that dependency.
-5. When target content contains several hard constraints or confirmed freeze points, plan to rewrite that content as numbered steps, a checklist, confirmation points, or a reusable template.
-6. Merge or remove overlapping content after preserving useful meaning in one canonical location.
-7. Use short, concrete, positive language. Use exclusionary wording for real boundaries, invalid cases, compatibility risks, or necessary exceptions. Keep replaced, avoided, or poor examples out of the target document unless they are needed to define a boundary or exception.
-8. Ask only blocking questions that cannot be answered from local context.
+## Progressive References
 
-When reviewing an existing plan, apply the same workflow and return only the revisions needed to make the plan executable.
+Read only the reference needed for the task:
 
-## Plan Output Template
-
-Use this English template unless the user requests a stricter structure.
-
-```markdown
-## Modification Plan
-
-### Edit 1: <short name>
-- File:
-- Location:
-- Current content:
-- Action:
-- Exact target wording:
-- Reason:
-- Validation:
-
-### Consolidation Check
-- Repeated or conflicting content:
-- Canonical location:
-- Content to merge, replace, or remove:
-
-### Blocking Questions
-- None / <question>
-```
-
-Add more `Edit N` blocks only when separate write locations or target outcomes are required.
-
-## Code Change Addendum
-
-Use this addendum only when the planned change touches code.
-
-For code plans, add these fields inside each affected `Edit N` block:
-
-- Comments / docstrings to add:
-- Compatibility impact:
-
-- Script headers should document purpose, expected inputs, produced outputs, main side effects, and required assumptions.
-- Public functions and classes should document purpose, parameters, returns, raised errors when relevant, and domain assumptions when relevant.
-- Key variables should have short comments when they encode units, shapes, axes, coordinate systems, metadata keys, thresholds, or non-obvious choices.
-- API-affecting changes should include one compatibility classification: `Internal-only change`, `Stable API, implementation cleanup`, `Public API change with migration path`, or `Behavior change requiring justification`.
-
-## Validation Before Final Plan
-
-Before giving the final plan, confirm that it:
-
-1. Is written in English.
-2. Names every file to edit.
-3. Anchors every edit to existing content or explains why new content is needed.
-4. Gives a concrete target result for every edit.
-5. Identifies duplicate or conflicting content and the canonical location.
-6. Includes validation steps that check the changed file behavior or document contract.
+- Read [references/planning-workflow.md](references/planning-workflow.md) for plans with multiple files, consolidation, or a hard process requirement.
+- Read [references/code-planning.md](references/code-planning.md) when the plan changes code, tests, scripts, APIs, or configuration behavior.
+- Read [references/plan-template.md](references/plan-template.md) when the user has not supplied a required output format.

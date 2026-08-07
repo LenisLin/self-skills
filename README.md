@@ -15,6 +15,10 @@ continuous-plan-confirmation/
   SKILL.md
 precise-modification-planning/
   SKILL.md
+  references/
+    planning-workflow.md
+    code-planning.md
+    plan-template.md
 scientific-objectivity-tone/
   SKILL.md
   references/
