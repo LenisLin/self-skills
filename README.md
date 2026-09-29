@@ -4,7 +4,9 @@ Personal Codex skills that can be reused across projects.
 
 ## Included Skills
 
+- `analysis-script-style`: keeps biomedical data-analysis scripts concise, readable, and sequential.
 - `continuous-plan-confirmation`: keeps Codex in a planning confirmation loop until explicit execution or finalization.
+- `deep-learning-project-skill`: defines maintainable deep-learning project boundaries, interfaces, and conventions.
 - `precise-modification-planning`: produces concise, file-grounded plans before code, document, prompt, config, or workflow changes.
 - `scholar-bibtex-citation-audit`: refreshes BibTeX entries from Google Scholar, preserves LaTeX citation keys, and audits citation consistency.
 - `scientific-objectivity-tone`: keeps scientific writing objective, evidence-bounded, and anti-hype.
@@ -13,8 +15,31 @@ Personal Codex skills that can be reused across projects.
 ## Repository Layout
 
 ```text
+analysis-script-style/
+  SKILL.md
+  agents/
+    openai.yaml
+  assets/
+    icon.svg
+  examples/
+    python_analysis.py
+    r_analysis.R
+  references/
+    review-checklist.md
+    style-guide.md
 continuous-plan-confirmation/
   SKILL.md
+deep-learning-project-skill/
+  SKILL.md
+  references/
+    ARCHITECTURE.md
+    DATASET.md
+    INFERENCE.md
+    LOSS.md
+    METRICS.md
+    MODEL.md
+    OPTIMIZATION.md
+    TRAIN.md
 precise-modification-planning/
   SKILL.md
   references/
@@ -49,7 +74,9 @@ Install all skills:
 
 ```bash
 mkdir -p ~/.codex/skills
+cp -r analysis-script-style ~/.codex/skills/
 cp -r continuous-plan-confirmation ~/.codex/skills/
+cp -r deep-learning-project-skill ~/.codex/skills/
 cp -r precise-modification-planning ~/.codex/skills/
 cp -r scholar-bibtex-citation-audit ~/.codex/skills/
 cp -r scientific-objectivity-tone ~/.codex/skills/

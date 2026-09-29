@@ -1,0 +1,13 @@
+interface:
+  display_name: analysis script style
+  short_description: Write and review biomedical data-analysis scripts as concise,
+    readable, sequential scientific workflows.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
