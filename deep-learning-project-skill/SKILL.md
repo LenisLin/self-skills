@@ -1,3 +1,8 @@
+---
+name: deep-learning-project-skill
+description: Design and extend maintainable deep learning projects. Use when organizing model, dataset, loss, metrics, training, evaluation, and inference code.
+---
+
 # Deep Learning Project Architecture Skill
 
 ## Purpose
