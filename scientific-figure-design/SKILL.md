@@ -15,4 +15,4 @@ description: Design and refine scientific and biomedical data figures from data 
 8. Reuse available author code and record whether it implements the figure, supplies similar geometry, or prepares upstream data. Build independent simulated examples where useful, compute displayed statistics from their inputs, and label simulation and assumptions.
 9. Render at the intended size, inspect each output alongside its reference, and iterate on visible differences. Deliver reproducible code, input contracts, and readable vector and raster figures; report the selected method and practical limits.
 
-For the local CRLM/CIMA examples, consult `/Users/lenislin/project/lungcancer/docs/visualization/README.md` when available for the method guide, source mappings, simulated inputs, and comparison gallery.
+When the current project provides `docs/visualization/README.md`, consult it for the method guide, source mappings, simulated inputs, and comparison gallery.
