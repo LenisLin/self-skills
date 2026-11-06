@@ -9,6 +9,7 @@ Personal Codex skills that can be reused across projects.
 - `deep-learning-project-skill`: defines maintainable deep-learning project boundaries, interfaces, and conventions.
 - `precise-modification-planning`: produces concise, file-grounded plans before code, document, prompt, config, or workflow changes.
 - `scholar-bibtex-citation-audit`: refreshes BibTeX entries from Google Scholar, preserves LaTeX citation keys, and audits citation consistency.
+- `scientific-figure-design`: selects and refines scientific visualizations using data structure and reference figure style.
 - `scientific-objectivity-tone`: keeps scientific writing objective, evidence-bounded, and anti-hype.
 - `reviewer-response`: plans and drafts source-grounded reviewer responses with revision matching, formatting rules, and worked examples.
 
@@ -50,6 +51,8 @@ scholar-bibtex-citation-audit/
   SKILL.md
   agents/
     openai.yaml
+scientific-figure-design/
+  SKILL.md
 scientific-objectivity-tone/
   SKILL.md
   references/
@@ -79,6 +82,7 @@ cp -r continuous-plan-confirmation ~/.codex/skills/
 cp -r deep-learning-project-skill ~/.codex/skills/
 cp -r precise-modification-planning ~/.codex/skills/
 cp -r scholar-bibtex-citation-audit ~/.codex/skills/
+cp -r scientific-figure-design ~/.codex/skills/
 cp -r scientific-objectivity-tone ~/.codex/skills/
 cp -r reviewer-response ~/.codex/skills/
 ```
