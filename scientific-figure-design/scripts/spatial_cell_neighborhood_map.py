@@ -1,4 +1,4 @@
-"""展示组织空间中的细胞邻域分布。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Show the distribution of cell neighborhoods in tissue space. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
