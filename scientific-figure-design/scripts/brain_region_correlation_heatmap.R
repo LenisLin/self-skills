@@ -1,4 +1,4 @@
-# 比较脑区和阶段间的转录相关性。使用附带的模拟数据生成 PNG、PDF 和 RDS。
+# Compare transcriptomic correlations across brain regions and stages. Simulate data and generate PNG, PDF, and RDS outputs.
 args <- commandArgs(trailingOnly = TRUE)
 out <- if (length(args)) args[[1]] else "."
 entry <- sub("^--file=", "", grep("^--file=", commandArgs(), value = TRUE)[1])
