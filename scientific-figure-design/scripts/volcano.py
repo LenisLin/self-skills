@@ -1,4 +1,4 @@
-"""展示差异基因的方向与统计显著性。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Show the direction and statistical significance of differentially expressed genes. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
