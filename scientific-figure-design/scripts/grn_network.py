@@ -1,4 +1,4 @@
-"""展示调控网络、互作和模块。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Show regulatory networks, interactions, and modules. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
