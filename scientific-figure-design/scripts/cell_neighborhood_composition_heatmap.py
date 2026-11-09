@@ -1,4 +1,4 @@
-"""比较细胞类型与空间邻域的组成。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare the composition of cell types and spatial neighborhoods. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
