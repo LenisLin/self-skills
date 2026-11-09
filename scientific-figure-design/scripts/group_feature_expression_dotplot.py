@@ -1,4 +1,4 @@
-"""比较细胞群的基因表达强度与覆盖比例。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare gene expression intensity and the proportion of cells expressing each gene across cell groups. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
