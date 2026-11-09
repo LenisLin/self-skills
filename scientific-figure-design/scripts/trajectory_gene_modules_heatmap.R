@@ -1,4 +1,4 @@
-# 展示轨迹中基因模块与阶段转换。使用附带的模拟数据生成 PNG、PDF 和 RDS。
+# Show gene modules and stage transitions along a trajectory. Simulate data and generate PNG, PDF, and RDS outputs.
 args <- commandArgs(trailingOnly = TRUE)
 out <- if (length(args)) args[[1]] else "."
 entry <- sub("^--file=", "", grep("^--file=", commandArgs(), value = TRUE)[1])
