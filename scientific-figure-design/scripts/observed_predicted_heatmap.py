@@ -1,4 +1,4 @@
-"""比较观测与预测的矩阵模式。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare observed and predicted matrix patterns. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
