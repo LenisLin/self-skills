@@ -1,4 +1,4 @@
-"""展示少数基因集的独有与共有成员。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Show unique and shared members of a few gene sets. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
