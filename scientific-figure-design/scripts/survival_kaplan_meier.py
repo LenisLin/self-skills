@@ -1,4 +1,4 @@
-"""比较不同组的事件时间与生存概率。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare event times and survival probabilities across groups. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
