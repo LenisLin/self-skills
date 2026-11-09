@@ -1,4 +1,4 @@
-"""比较两个群体的分类数量或比例。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare categorical counts or proportions between two populations. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
