@@ -1,4 +1,4 @@
-"""展示细胞层级与多层注释。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Show cell hierarchies and multiple annotation layers. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
