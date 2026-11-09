@@ -1,4 +1,4 @@
-"""展示整体组成与主要份额。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Show overall composition and major shares. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
