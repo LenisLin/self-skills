@@ -1,4 +1,4 @@
-"""比较各类别在两侧的观测分布。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare observed distributions on both sides for each category. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
