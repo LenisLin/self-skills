@@ -1,4 +1,4 @@
-"""比较跨数量级的两个正值变量。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare two positive variables spanning orders of magnitude. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
