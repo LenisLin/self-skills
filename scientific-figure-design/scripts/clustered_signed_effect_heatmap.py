@@ -1,4 +1,4 @@
-"""展示有方向效应及聚类模块。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Show signed effects and clustered modules. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
