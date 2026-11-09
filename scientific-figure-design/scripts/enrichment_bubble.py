@@ -1,4 +1,4 @@
-"""比较多个通路的富集程度和显著性。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare enrichment levels and significance across multiple pathways. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
