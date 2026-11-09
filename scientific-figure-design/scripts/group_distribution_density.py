@@ -1,4 +1,4 @@
-"""比较组间数值分布及偏移。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare value distributions and shifts across groups. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
