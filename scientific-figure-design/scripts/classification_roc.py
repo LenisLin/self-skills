@@ -1,4 +1,4 @@
-"""比较分类模型的阈值判别能力。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare classification models' discrimination across thresholds. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
