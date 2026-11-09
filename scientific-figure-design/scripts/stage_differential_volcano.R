@@ -1,4 +1,4 @@
-# 比较多个阶段的差异基因及方向。使用附带的模拟数据生成 PNG、PDF 和 RDS。
+# Compare differentially expressed genes and their directions across multiple stages. Simulate data and generate PNG, PDF, and RDS outputs.
 args <- commandArgs(trailingOnly = TRUE)
 out <- if (length(args)) args[[1]] else "."
 entry <- sub("^--file=", "", grep("^--file=", commandArgs(), value = TRUE)[1])
