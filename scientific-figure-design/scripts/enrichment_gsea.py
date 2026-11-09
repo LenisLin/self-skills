@@ -1,4 +1,4 @@
-"""展示基因集在排序基因中的富集位置。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Show where a gene set is enriched among ranked genes. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
