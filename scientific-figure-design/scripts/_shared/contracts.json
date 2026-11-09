@@ -1,0 +1,358 @@
+{
+  "version": "2026-11-06",
+  "seed": 20261105,
+  "tables": {
+    "groups": [
+      "unit",
+      "group",
+      "value"
+    ],
+    "scatter": [
+      "unit",
+      "x",
+      "y",
+      "group"
+    ],
+    "log_scatter": [
+      "item",
+      "x",
+      "y",
+      "size",
+      "color"
+    ],
+    "paired": [
+      "unit",
+      "category",
+      "side",
+      "value"
+    ],
+    "composition": [
+      "sample",
+      "component",
+      "count",
+      "fraction"
+    ],
+    "metadata": [
+      "sample",
+      "age",
+      "batch",
+      "group",
+      "score"
+    ],
+    "category_values": [
+      "category",
+      "left",
+      "right",
+      "coefficient"
+    ],
+    "cn_fraction": [
+      "row",
+      "column",
+      "fraction"
+    ],
+    "association": [
+      "row",
+      "column",
+      "neg_log10_p"
+    ],
+    "heatmap": [
+      "row",
+      "column",
+      "value",
+      "q"
+    ],
+    "split": [
+      "row",
+      "column",
+      "value_a",
+      "value_b",
+      "point_value",
+      "flag"
+    ],
+    "pairwise": [
+      "row",
+      "column",
+      "value"
+    ],
+    "ordered": [
+      "row",
+      "sample",
+      "value"
+    ],
+    "row_coefficients": [
+      "row",
+      "coefficient"
+    ],
+    "dotplot": [
+      "group",
+      "feature",
+      "mean",
+      "fraction"
+    ],
+    "observed_predicted": [
+      "row",
+      "column",
+      "observed",
+      "predicted"
+    ],
+    "embedding": [
+      "unit",
+      "x",
+      "y",
+      "group",
+      "feature"
+    ],
+    "pca": [
+      "unit",
+      "pc1",
+      "pc2",
+      "group",
+      "age",
+      "variance1",
+      "variance2"
+    ],
+    "flow": [
+      "x",
+      "y",
+      "u",
+      "v"
+    ],
+    "tree": [
+      "node",
+      "parent",
+      "level",
+      "group",
+      "value"
+    ],
+    "nodes": [
+      "node",
+      "type",
+      "value"
+    ],
+    "edges": [
+      "source",
+      "target",
+      "weight"
+    ],
+    "sets": [
+      "item",
+      "in_a",
+      "in_b"
+    ],
+    "chromosomes": [
+      "chrom",
+      "length"
+    ],
+    "links": [
+      "source_chr",
+      "source_pos",
+      "target_chr",
+      "target_pos",
+      "weight"
+    ],
+    "locus": [
+      "variant",
+      "position",
+      "p_value",
+      "track",
+      "ld"
+    ],
+    "tracks": [
+      "position",
+      "group",
+      "source",
+      "signal"
+    ],
+    "sequence": [
+      "position",
+      "base",
+      "effect"
+    ],
+    "metrics": [
+      "group",
+      "replicate",
+      "value"
+    ],
+    "roc": [
+      "unit",
+      "label",
+      "score",
+      "model"
+    ],
+    "survival": [
+      "unit",
+      "time",
+      "event",
+      "group",
+      "TreatmentB",
+      "HighScore",
+      "Age10",
+      "BurdenSD",
+      "MarkerSD",
+      "StageHigh"
+    ],
+    "km_curve": [
+      "group",
+      "time",
+      "survival",
+      "lower",
+      "upper"
+    ],
+    "km_censors": [
+      "group",
+      "time",
+      "survival"
+    ],
+    "km_risk": [
+      "group",
+      "time",
+      "n_risk"
+    ],
+    "forest": [
+      "term",
+      "estimate",
+      "lower",
+      "upper",
+      "p_value"
+    ],
+    "effect_pairs": [
+      "item",
+      "beta_x",
+      "beta_y",
+      "se_x",
+      "se_y",
+      "group"
+    ],
+    "volcano": [
+      "feature",
+      "effect",
+      "p_value",
+      "q_value"
+    ],
+    "pathways": [
+      "pathway",
+      "score",
+      "size",
+      "q_value"
+    ],
+    "gsea": [
+      "rank",
+      "metric",
+      "hit",
+      "running_score"
+    ],
+    "cn_map": [
+      "unit",
+      "x_um",
+      "y_um",
+      "cn"
+    ],
+    "box_groups": [
+      "unit",
+      "group",
+      "value",
+      "facet"
+    ]
+  },
+  "style": {
+    "font_family": "Arial",
+    "target_font_family": "Arial",
+    "font_size": 7,
+    "label_size": 7,
+    "tick_size": 6,
+    "line_width": 0.55,
+    "marker_size": 8,
+    "alpha": 0.5,
+    "dpi": 220,
+    "colors": {
+      "blue": "#6BAEC8",
+      "pink": "#F48AAF",
+      "heatmap_pink": "#DEA1A5",
+      "dark_blue": "#142F67",
+      "red": "#BB2F29",
+      "neutral": "#B8B8B8",
+      "scatter": "#8AABC6",
+      "mirror_left": "#ACC5BA",
+      "mirror_right": "#F9C393"
+    },
+    "groups": {
+      "A": "#6BAEC8",
+      "B": "#F48AAF",
+      "C": "#8EBC59",
+      "D": "#C3A2CC",
+      "E": "#FBB252",
+      "F": "#57638F"
+    },
+    "categories": [
+      "#57638F",
+      "#80D1E2",
+      "#FBB252",
+      "#2D7A98",
+      "#8EBC59",
+      "#C3A2CC",
+      "#E1B2C1",
+      "#009D8A"
+    ],
+    "diverging_cmap": "RdBu_r",
+    "cluster_cmap": "Spectral_r",
+    "observed_cmap": "YlOrRd",
+    "feature_cmap": "YlOrRd",
+    "bubble_cmap": "Reds",
+    "log_scatter_cmap": "plasma_r",
+    "age_cmap": "Reds",
+    "time_label": "Time (months)",
+    "donut_colors": [
+      "#F3CAD9",
+      "#EDAFC7",
+      "#F27FA5",
+      "#DC658C",
+      "#B9577C",
+      "#913B64"
+    ],
+    "comparison_note": "Arial typography pass on the aligned simulation inputs; text and text colors only; statistics and graphical encodings retained.",
+    "show_group_test": true,
+    "typography": {
+      "rc": {
+        "text.color": "#222222",
+        "axes.labelcolor": "#222222",
+        "axes.titlecolor": "#222222",
+        "xtick.labelcolor": "#222222",
+        "ytick.labelcolor": "#222222",
+        "axes.titlesize": 7,
+        "axes.titleweight": "normal",
+        "axes.labelweight": "normal",
+        "font.weight": "normal",
+        "legend.title_fontsize": 6
+      },
+      "mathtext_family": "Arial",
+      "annotation_size": 6,
+      "boxplot_significance": {
+        "display": "stars",
+        "thresholds": [
+          {"p_less_than": 0.001, "label": "***"},
+          {"p_less_than": 0.01, "label": "**"},
+          {"p_less_than": 0.05, "label": "*"}
+        ],
+        "nonsignificant_label": "ns",
+        "font_size": 6,
+        "font_weight": "normal"
+      },
+      "secondary_text_color": "#595959",
+      "labels": {
+        "Embedding1": "Embedding 1",
+        "Embedding2": "Embedding 2",
+        "−log10(P)": "$-\\log_{10}(P)$",
+        "−log10(BH q)": "$-\\log_{10}(\\mathrm{BH}\\ q)$"
+      },
+      "notes": [
+        "Keep 7 pt axis labels/panel titles and 6 pt ticks; regular panel titles.",
+        "Use 6 pt regression statistics; retain actual Pearson r and P values.",
+        "Display boxplot two-sided Mann-Whitney P values as stars using strict p_less_than thresholds; retain the existing annotation position.",
+        "Use dark neutral common text and medium gray small-heatmap row labels; retain existing category-colored text.",
+        "Use Arial custom mathtext faces and real subscript 10; no alternative math font fallback.",
+        "Use Arial for sequence-logo letter glyphs; retain positions, signed effect heights and base colors.",
+        "Keep existing legend placement, statistical calculations and non-text colors."
+      ]
+    }
+  }
+}

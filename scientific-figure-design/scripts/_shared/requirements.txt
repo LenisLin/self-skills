@@ -1,0 +1,10 @@
+matplotlib
+matplotlib-venn
+numpy
+pandas
+scipy
+seaborn
+networkx
+scikit-learn
+statsmodels
+logomaker

@@ -15,4 +15,12 @@ description: Design and refine scientific and biomedical data figures from data 
 8. Reuse available author code and record whether it implements the figure, supplies similar geometry, or prepares upstream data. Build independent simulated examples where useful, compute displayed statistics from their inputs, and label simulation and assumptions.
 9. Render at the intended size, inspect each output alongside its reference, and iterate on visible differences. Deliver reproducible code, input contracts, and readable vector and raster figures; report the selected method and practical limits.
 
-When the current project provides `docs/visualization/README.md`, consult it for the method guide, source mappings, simulated inputs, and comparison gallery.
+## Figure catalog and scripts
+
+Choose a visual example from the [figure catalog](references/figure-catalog.md) using the analysis goal, input structure, data scale, and distribution. Each catalog entry links to its visual reference and a same-named reproducible script. The catalog identifies published panels, same-type references, reference-data previews, and examples whose reference image is pending.
+
+Run a Python example as `python scripts/volcano.py output_directory` or an R example as `Rscript scripts/pseudotime_gene_expression.R output_directory`. Python examples use the bundled synthetic CSVs and shared plotting functions; R examples create simulated inputs and save them with the figures. Install the packages in [requirements.txt](scripts/_shared/requirements.txt) for Python examples and use Cairo-enabled R for R examples.
+
+## Color selection
+
+For categorical plots, start with dittoSeq colors and use a named, stable category mapping across panels. Apply ggsci palettes when the requested style calls for them. Honor explicitly requested palettes and visual-reference colors. Select sequential or zero-centered diverging scales for continuous quantities; check contrast, color-vision accessibility and redundant visual encodings. Consult [color palettes](references/color-palettes.md) for the palette preview and R examples.
