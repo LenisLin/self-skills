@@ -1,4 +1,4 @@
-"""比较多个模型的性能分布。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare performance distributions across multiple models. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
