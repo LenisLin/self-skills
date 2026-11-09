@@ -1,4 +1,4 @@
-"""展示染色体位置及跨区间连接。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Show chromosomal positions and connections across intervals. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
