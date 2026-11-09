@@ -1,4 +1,4 @@
-# 展示疾病相关基因在器官和阶段中的表达。使用附带的模拟数据生成 PNG、PDF 和 RDS。
+# Show expression of disease-associated genes across organs and stages. Simulate data and generate PNG, PDF, and RDS outputs.
 args <- commandArgs(trailingOnly = TRUE)
 out <- if (length(args)) args[[1]] else "."
 entry <- sub("^--file=", "", grep("^--file=", commandArgs(), value = TRUE)[1])
