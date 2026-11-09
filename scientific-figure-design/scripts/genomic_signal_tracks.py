@@ -1,4 +1,4 @@
-"""比较基因组区间的多组信号。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare multiple sets of signals across genomic intervals. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
