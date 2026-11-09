@@ -1,4 +1,4 @@
-"""在同一矩阵比较两组度量。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare two sets of metrics in the same matrix. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
