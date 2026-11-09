@@ -1,4 +1,4 @@
-"""比较样本、特征或区域间的成对相似度。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare pairwise similarities among samples, features, or regions. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
