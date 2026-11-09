@@ -1,4 +1,4 @@
-# 比较两个物种的共同基因随阶段变化。使用附带的模拟数据生成 PNG、PDF 和 RDS。
+# Compare stage-dependent changes in shared genes between two species. Simulate data and generate PNG, PDF, and RDS outputs.
 args <- commandArgs(trailingOnly = TRUE)
 out <- if (length(args)) args[[1]] else "."
 entry <- sub("^--file=", "", grep("^--file=", commandArgs(), value = TRUE)[1])
