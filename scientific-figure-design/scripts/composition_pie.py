@@ -1,4 +1,4 @@
-"""展示少数类别在整体中的组成。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Show how a few categories make up a whole. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
