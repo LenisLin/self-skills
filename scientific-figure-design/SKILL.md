@@ -1,6 +1,8 @@
 ---
 name: scientific-figure-design
 description: Design and refine scientific and biomedical data figures from data structures, statistical results, and visual references; select plot types, adapt reference styles, and build reproducible examples.
+metadata:
+  version: "1.0.0"
 ---
 
 # Scientific figure design
@@ -24,3 +26,7 @@ Run a Python example as `python scripts/volcano.py output_directory` or an R exa
 ## Color selection
 
 For categorical plots, start with dittoSeq colors and use a named, stable category mapping across panels. Apply ggsci palettes when the requested style calls for them. Honor explicitly requested palettes and visual-reference colors. Select sequential or zero-centered diverging scales for continuous quantities; check contrast, color-vision accessibility and redundant visual encodings. Consult [color palettes](references/color-palettes.md) for the palette preview and R examples.
+
+## Versioning
+
+This skill starts at stable version 1.0.0. Versioning applies only to this skill: increment MAJOR for incompatible changes, MINOR for backward-compatible functionality, and PATCH for compatible fixes or content clarifications.
