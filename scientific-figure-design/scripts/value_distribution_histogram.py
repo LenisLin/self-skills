@@ -1,4 +1,4 @@
-"""观察单变量的频数分布。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Inspect the frequency distribution of a single variable. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
