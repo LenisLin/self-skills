@@ -1,4 +1,4 @@
-"""比较多组效应估计及置信区间。读取附带的模拟数据并生成 PNG、PDF、SVG。"""
+"""Compare effect estimates and confidence intervals across multiple groups. Read the bundled simulated data and generate PNG, PDF, and SVG outputs."""
 import sys
 from pathlib import Path as FilePath
 
