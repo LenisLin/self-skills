@@ -2,7 +2,7 @@
 name: scientific-figure-design
 description: Design and refine scientific and biomedical data figures from data structures, statistical results, and visual references; select plot types, adapt reference styles, and build reproducible examples.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Scientific figure design
@@ -29,4 +29,4 @@ For categorical plots, start with dittoSeq colors and use a named, stable catego
 
 ## Versioning
 
-This skill starts at stable version 1.0.0. Versioning applies only to this skill: increment MAJOR for incompatible changes, MINOR for backward-compatible functionality, and PATCH for compatible fixes or content clarifications.
+This skill follows semantic versioning. Versioning applies only to this skill: increment MAJOR for incompatible changes, MINOR for backward-compatible functionality, and PATCH for compatible fixes or content clarifications.
