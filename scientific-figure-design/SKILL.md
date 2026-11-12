@@ -2,7 +2,7 @@
 name: scientific-figure-design
 description: Design and refine scientific and biomedical data figures from data structures, statistical results, and visual references; select plot types, adapt reference styles, and build reproducible examples.
 metadata:
-  version: "1.1.1"
+  version: "2.0.0"
 ---
 
 # Scientific figure design
