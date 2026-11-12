@@ -45,11 +45,6 @@
       "right",
       "coefficient"
     ],
-    "cn_fraction": [
-      "row",
-      "column",
-      "fraction"
-    ],
     "association": [
       "row",
       "column",
