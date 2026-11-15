@@ -51,6 +51,6 @@ draw<-function(){par(mar=rep(0,4),family='sans',xaxs='i',yaxs='i');plot.new();pl
  rasterImage(as.raster(matrix(rev(pal),ncol=1)),.045,.235,.065,.59,interpolate=FALSE);text(.077,seq(.235,.59,length.out=7),-3:3,adj=0,cex=.7);text(.025,.414,'Relative Expression Level',srt=90,font=2,cex=.75)
  segments(.565,.045,.995,.045,lwd=1.2);for(v in seq(0,10,2.5)){x<-.565+v/11*.423;segments(x,.045,x,.055,lwd=1.2);text(x,.03,format(v,nsmall=1),cex=.67)};text(.78,.009,'-log10(p-adjust)',font=2,cex=.75)
 }
-saveRDS(list(expression=value,cluster=cluster,pseudotime=t,enrichment=enrichment),file.path(out,'spermatogenic_branch_gene_modules_simulated.rds'))
-png(file.path(out,'spermatogenic_branch_gene_modules.png'),width=1120,height=980,res=160,type='cairo');draw();dev.off()
-cairo_pdf(file.path(out,'spermatogenic_branch_gene_modules.pdf'),width=7,height=6.125);draw();dev.off()
+saveRDS(list(expression=value,cluster=cluster,pseudotime=t,enrichment=enrichment),file.path(out,'branched_expression_modules_enrichment_heatmap_simulated.rds'))
+png(file.path(out,'branched_expression_modules_enrichment_heatmap.png'),width=1120,height=980,res=160,type='cairo');draw();dev.off()
+cairo_pdf(file.path(out,'branched_expression_modules_enrichment_heatmap.pdf'),width=7,height=6.125);draw();dev.off()
