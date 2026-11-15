@@ -1,6 +1,6 @@
 # Reproduce CattleCA main Figure 7b with simulated cell-type/trait associations.
 # Input: optional output directory. Outputs: PNG, vector PDF, simulated RDS.
-# Run: Rscript milk_trait_cell_lineage_associations.R OUTPUT_DIR
+# Run: Rscript grouped_category_trait_association_bubble.R OUTPUT_DIR
 # Uses base R; simulation and figure-specific drawing are fully inline.
 args <- commandArgs(trailingOnly = TRUE)
 out <- if (length(args)) args[1] else 'figures'
@@ -37,10 +37,10 @@ for(i in seq_len(nrow(highlights))) {
 }
 d$FDR <- 10^(-d$score)
 saveRDS(list(associations=d,highlights=highlights,lineages=types,seed=7329),
-        file.path(out,'milk_trait_cell_lineage_associations_simulated.rds'))
+        file.path(out,'grouped_category_trait_association_bubble_simulated.rds'))
 # Draw at the reference crop's wide geometry, with inset legend and panel letter.
 for (fmt in c('png','pdf')) {
- file <- file.path(out,paste0('milk_trait_cell_lineage_associations.',fmt))
+ file <- file.path(out,paste0('grouped_category_trait_association_bubble.',fmt))
  if(fmt=='png') png(file,width=1262,height=648,res=160,type='cairo') else
    cairo_pdf(file,width=1262/160,height=648/160)
  par(mar=c(2.8,5.5,6.5,10.2), mgp=c(1.6,.6,0),family='sans',cex=.83,xaxs='i',yaxs='i')
