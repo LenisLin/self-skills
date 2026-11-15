@@ -44,4 +44,4 @@ draw_5e <- function(data) {
 
 set.seed(20261108)
 data <- simulate_5e()
-render_example(data, draw_5e, "disease_gene_organ_stage_heatmap", out, c(7, 8.5))
+render_example(data, draw_5e, "grouped_stage_feature_matrix_heatmap", out, c(7, 8.5))
