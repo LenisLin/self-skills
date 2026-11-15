@@ -83,4 +83,4 @@ draw_ext7c <- function(data) {
 
 set.seed(20261108)
 data <- simulate_ext7c()
-render_example(data, draw_ext7c, "brain_region_correlation_heatmap", out, c(6.8, 6.8))
+render_example(data, draw_ext7c, "grouped_sample_correlation_heatmap", out, c(6.8, 6.8))
