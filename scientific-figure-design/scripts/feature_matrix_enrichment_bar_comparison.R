@@ -1,6 +1,6 @@
 # CattleCA main Figure 4f: subtype marker heatmap and aligned pathway NES bars.
 # Input: optional output directory. Output: PNG, vector PDF and simulated RDS.
-# Run: Rscript goblet_subtype_markers_pathway_enrichment.R OUTPUT_DIR
+# Run: Rscript feature_matrix_enrichment_bar_comparison.R OUTPUT_DIR
 args <- commandArgs(trailingOnly=TRUE)
 out <- if(length(args)) args[1] else 'figures'
 dir.create(out,recursive=TRUE,showWarnings=FALSE)
@@ -34,11 +34,11 @@ terms <- c('KEGG:ribosome','GO:cytoplasmic translation','GO:peptide biosynthetic
 # Six functional blocks correspond to the contiguous heatmap regions in reference.
 NES <- c(3.35,3.15,2.55,2.75,2.28,2.17,2.15,2.08,2.02,1.86,2.05,1.91,1.88,1.76,1.65,1.83,1.62,1.71,1.69,1.55,2.15,1.96,1.84,1.77,1.82,1.62,1.47)+rnorm(27,0,.035)
 pathways <- data.frame(term=terms,NES=NES,block=rep(1:6,c(5,5,5,5,5,2)))
-saveRDS(list(expression=expression,marker_rows=marker_rows,pathways=pathways,seed=4329),file.path(out,'goblet_subtype_markers_pathway_enrichment_simulated.rds'))
+saveRDS(list(expression=expression,marker_rows=marker_rows,pathways=pathways,seed=4329),file.path(out,'feature_matrix_enrichment_bar_comparison_simulated.rds'))
 library(grid)
 # Coordinates in pixels make heatmap rows and enrichment bars align precisely.
 for(fmt in c('png','pdf')) {
- file <- file.path(out,paste0('goblet_subtype_markers_pathway_enrichment.',fmt))
+ file <- file.path(out,paste0('feature_matrix_enrichment_bar_comparison.',fmt))
  if(fmt=='png') png(file,width=780,height=576,res=140,type='cairo') else cairo_pdf(file,width=780/140,height=576/140)
  grid.newpage(); pushViewport(viewport(xscale=c(0,780),yscale=c(576,0)))
  txt <- function(label,x,y,size=8,...) grid.text(label,x=unit(x,'native'),y=unit(y,'native'),gp=gpar(fontsize=size,fontfamily='sans'),...)
