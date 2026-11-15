@@ -123,6 +123,6 @@ draw<-function(){
  }
  rasterImage(as.raster(matrix(pal,nrow=1)),.28,.055,.345,.073,interpolate=FALSE);text(.265,.064,'z-score',adj=1,cex=.67);text(seq(.28,.345,length.out=5),.039,-2:2,cex=.6)
 }
-saveRDS(list(expression=expression,gene_module=gene_module,column_module=column_module,column_tissue=tissues[column_tissue],column_cell=cell_types[column_cell],enrichment=enrichment,TFs=TFs,schematic_cells=schematic_cells),file.path(out,'gastrointestinal_epithelial_modules_simulated.rds'))
-png(file.path(out,'gastrointestinal_epithelial_modules.png'),width=2780,height=1135,res=180,type='cairo');draw();dev.off()
-cairo_pdf(file.path(out,'gastrointestinal_epithelial_modules.pdf'),width=15.44,height=6.31);draw();dev.off()
+saveRDS(list(expression=expression,gene_module=gene_module,column_module=column_module,column_tissue=tissues[column_tissue],column_cell=cell_types[column_cell],enrichment=enrichment,TFs=TFs,schematic_cells=schematic_cells),file.path(out,'grouped_feature_modules_enrichment_heatmap_simulated.rds'))
+png(file.path(out,'grouped_feature_modules_enrichment_heatmap.png'),width=2780,height=1135,res=180,type='cairo');draw();dev.off()
+cairo_pdf(file.path(out,'grouped_feature_modules_enrichment_heatmap.pdf'),width=15.44,height=6.31);draw();dev.off()
