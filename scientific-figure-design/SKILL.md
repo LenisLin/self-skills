@@ -2,7 +2,7 @@
 name: scientific-figure-design
 description: Design and refine scientific and biomedical data figures from data structures, statistical results, and visual references; select plot types, adapt reference styles, and build reproducible examples.
 metadata:
-  version: "2.2.0"
+  version: "3.0.0"
 ---
 
 # Scientific figure design
@@ -19,7 +19,7 @@ metadata:
 
 ## Figure catalog and scripts
 
-Choose a visual example from the [figure catalog](references/figure-catalog.md) using the analysis goal, input structure, data scale, and distribution. Each catalog entry links to its visual reference and a same-named reproducible script. The catalog identifies published panels, same-type references, reference-data previews, and examples whose reference image is pending.
+Choose a visual example from the [figure catalog](references/figure-catalog.md) using the analysis goal, input structure, data scale, and distribution. Entries name the data structure and visual purpose, identify index dimensions and additional grouping or visual encodings, and link to a reference comparison and a same-named reproducible script. Independent plots with different coordinate systems or observational units have separate entries; aligned annotation tracks and grouped facets stay with the plot they describe. Dimensionality describes data indices or coordinates, not the number of variables encoded by color or size. The catalog identifies published panels, same-type references, reference-data previews, and examples whose reference image is pending.
 
 Run a Python example as `python scripts/volcano.py output_directory` or an R example as `Rscript scripts/pseudotime_gene_expression.R output_directory`. Each top-level figure script contains its plot-specific drawing code and helpers. Python examples load bundled synthetic CSVs; each R figure script contains its own data simulation and saves the inputs with the figures. Shared utilities in `scripts/_shared/` provide palettes, styling, data loading and export. Keep plot-specific drawing and simulation code in the corresponding figure script. Install the packages in [requirements.txt](scripts/_shared/requirements.txt) for Python examples and use Cairo-enabled R for R examples. The feature-importance example also requires the R package `randomForest`.
 
