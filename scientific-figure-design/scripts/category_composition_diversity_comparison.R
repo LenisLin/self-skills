@@ -19,7 +19,7 @@ for(i in 1:58){alpha<-c(rep(.9,7),.16,.12,.8,.4,.7,.15,.18,.5,.05,.05,.14,.14,.1
  for(iter in 1:50){w<-(lo+hi)/2;q<-(1-w)*p;q[dominant]<-q[dominant]+w;ed<-exp(-sum(q[q>0]*log(q[q>0])));if(ed>target)lo<-w else hi<-w}
  q<-(1-hi)*p;q[dominant]<-q[dominant]+hi;counts[i,]<-as.vector(rmultinom(1,totals[i],q))}
 p<-counts/rowSums(counts);entropy<- -rowSums(ifelse(p>0,p*log(p),0));effective_diversity<-exp(entropy)
-saveRDS(list(counts=counts,proportions=p,shannon_nats=entropy,display_diversity=effective_diversity),file.path(out,'immune_tissue_composition_entropy_simulated.rds'))
+saveRDS(list(counts=counts,proportions=p,shannon_nats=entropy,display_diversity=effective_diversity),file.path(out,'category_composition_diversity_comparison_simulated.rds'))
 draw<-function(){par(mar=rep(0,4),family='sans');plot.new();plot.window(c(0,1),c(0,1),xaxs='i',yaxs='i');text(.015,.995,'a',font=2,cex=1.8,adj=c(0,1));left<-.10;right<-.66;top<-.93;bottom<-.055;hh<-(top-bottom)/58
  for(i in 1:58){xx<-right-totals[i]/100000*(right-left);for(j in 1:29){nx<-xx+counts[i,j]/100000*(right-left);rect(xx,top-i*hh+.001,nx,top-(i-1)*hh-.001,col=colors[j],border=NA);xx<-nx};text(right+.018,top-(i-.5)*hh,tissues[i],adj=0,cex=.59);text(right-totals[i]/100000*(right-left)-.006,top-(i-.5)*hh,format(totals[i],big.mark=','),adj=1,cex=.59)}
  # Reference labels span 0-10, which exceeds log(29); effective number retains that display range.
@@ -31,5 +31,5 @@ draw<-function(){par(mar=rep(0,4),family='sans');plot.new();plot.window(c(0,1),c
  text(.047,.695,'Cell types',adj=0,cex=.78)
  for(j in 1:29){y<-.674-(j-1)*.0204;rect(.045,y-.007,.077,y+.007,col=colors[j],border=NA);text(.084,y,celltypes[j],adj=0,cex=.64)}
 }
-png(file.path(out,'immune_tissue_composition_entropy.png'),width=1250,height=2050,res=220,type='cairo');draw();dev.off()
-cairo_pdf(file.path(out,'immune_tissue_composition_entropy.pdf'),width=5.68,height=9.32);draw();dev.off()
+png(file.path(out,'category_composition_diversity_comparison.png'),width=1250,height=2050,res=220,type='cairo');draw();dev.off()
+cairo_pdf(file.path(out,'category_composition_diversity_comparison.pdf'),width=5.68,height=9.32);draw();dev.off()
