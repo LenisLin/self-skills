@@ -39,6 +39,6 @@ draw<-function(){par(mar=rep(0,4),family='sans',xaxs='i',yaxs='i');plot.new();pl
   for(j in seq_len(nrow(d)))text(.473,y-.025-j*dy+dy/2,paste0(d$term[j],' (',formatC(d$p[j],format='E',digits=2),')'),adj=0,cex=.69)
  }
 }
-saveRDS(list(expression=value,module=module,pseudotime=t,enrichment=enrichment),file.path(out,'forestomach_branchpoint_gene_modules_simulated.rds'))
-png(file.path(out,'forestomach_branchpoint_gene_modules.png'),width=1175,height=750,res=150,type='cairo');draw();dev.off()
-cairo_pdf(file.path(out,'forestomach_branchpoint_gene_modules.pdf'),width=7.83,height=5);draw();dev.off()
+saveRDS(list(expression=value,module=module,pseudotime=t,enrichment=enrichment),file.path(out,'branchpoint_expression_modules_enrichment_heatmap_simulated.rds'))
+png(file.path(out,'branchpoint_expression_modules_enrichment_heatmap.png'),width=1175,height=750,res=150,type='cairo');draw();dev.off()
+cairo_pdf(file.path(out,'branchpoint_expression_modules_enrichment_heatmap.pdf'),width=7.83,height=5);draw();dev.off()
