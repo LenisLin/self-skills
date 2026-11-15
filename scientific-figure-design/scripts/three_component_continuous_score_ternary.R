@@ -3,7 +3,7 @@
 # Visual reference: Mangiante et al. (2023), Nature Genetics, Figure 2b.
 # The author notebook shows archetype-coordinate projection and ternary geometry:
 # https://github.com/IARCbioinfo/MESOMICS_data/tree/main/phenotypic_map/MESOMICS
-# Run: Rscript ternary_archetype_survival.R OUTPUT_DIR
+# Run: Rscript three_component_continuous_score_ternary.R OUTPUT_DIR
 # Saves simulated sample data and a ternary plot in PNG, PDF and SVG formats.
 args <- commandArgs(trailingOnly = TRUE)
 out <- if (length(args)) args[1] else "."
@@ -57,7 +57,7 @@ weights <- exp(-distance2 / (2 * .08^2))
 surface <- as.vector(weights %*% survival / rowSums(weights))
 saveRDS(list(samples = samples, group_mean_proportions = means,
              surface_centers = centers, surface_months = surface, bandwidth = .08),
-        file.path(out, "ternary_archetype_survival_simulated.rds"))
+        file.path(out, "three_component_continuous_score_ternary_simulated.rds"))
 
 sector <- function(cx, cy, angle0, angle1, radius, fill) {
   theta <- seq(angle0, angle1, length.out = 30) * pi / 180
@@ -137,6 +137,6 @@ draw <- function() {
   }
 }
 
-png(file.path(out, "ternary_archetype_survival.png"), width = 2400, height = 1408, res = 200, type = "cairo"); draw(); dev.off()
-cairo_pdf(file.path(out, "ternary_archetype_survival.pdf"), width = 12, height = 7.04); draw(); dev.off()
-svg(file.path(out, "ternary_archetype_survival.svg"), width = 12, height = 7.04); draw(); dev.off()
+png(file.path(out, "three_component_continuous_score_ternary.png"), width = 2400, height = 1408, res = 200, type = "cairo"); draw(); dev.off()
+cairo_pdf(file.path(out, "three_component_continuous_score_ternary.pdf"), width = 12, height = 7.04); draw(); dev.off()
+svg(file.path(out, "three_component_continuous_score_ternary.svg"), width = 12, height = 7.04); draw(); dev.off()
