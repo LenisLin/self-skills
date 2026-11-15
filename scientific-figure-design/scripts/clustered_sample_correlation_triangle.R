@@ -15,7 +15,7 @@ ord<-hc$order
 correlation<-correlation[ord,ord];li<-li[ord];system<-sample(1:11,n,replace=TRUE,prob=c(.3,.12,.1,.12,.08,.08,.04,.06,.04,.03,.03));system[li==5]<-8
 system_names<-c('Digestive system','Endocrine system','Cardiovascular system','Lymphatic system','Female reproductive system','Respiratory system','Male reproductive system','Nervous system','Urinary system','Skeletal system','Integumentary system')
 sc<-c('#f36067','#f3a058','#b6b471','#7ac5a7','#aabbd3','#a8bc8c','#89d56d','#64d7df','#5082ba','#574584','#9c6260');lc<-c('#f95a60','#75cbd7','#c7cf64','#bccb51','#a7d392','#e7d9a7','#e59a29','#7a92b0');pal<-colorRampPalette(c('#ffffef','#ffffc2','#fee18a','#f9b475','#ec7048','#d62a20'))(256)
-saveRDS(list(expression=expression[,ord],correlation=correlation,cell_lineage=lineage_levels[li],tissue_system=system_names[system],order=ord,dendrogram=hc),file.path(out,'immune_expression_correlation_triangle_simulated.rds'))
+saveRDS(list(expression=expression[,ord],correlation=correlation,cell_lineage=lineage_levels[li],tissue_system=system_names[system],order=ord,dendrogram=hc),file.path(out,'clustered_sample_correlation_triangle_simulated.rds'))
 draw<-function(){par(mar=rep(0,4),family='sans');plot.new();plot.window(c(0,1),c(0,1),xaxs='i',yaxs='i');text(.012,.99,'b',cex=1.8,font=2,adj=c(0,1));x0<-.16;x1<-.97;y0<-.035;yt<-.865;dx<-(x1-x0)/n;dy<-(yt-y0)/n
  for(i in seq_len(n))for(j in i:n){v<-max(0,min(1,correlation[i,j]));rect(x0+(j-1)*dx,yt-i*dy,x0+j*dx,yt-(i-1)*dy,col=pal[1+round(v*255)],border=NA)}
  segments(x0,yt,x1,y0,lwd=.75)
@@ -47,5 +47,5 @@ draw<-function(){par(mar=rep(0,4),family='sans');plot.new();plot.window(c(0,1),c
  }
 
 }
-png(file.path(out,'immune_expression_correlation_triangle.png'),width=1900,height=1850,res=220,type='cairo');draw();dev.off()
-cairo_pdf(file.path(out,'immune_expression_correlation_triangle.pdf'),width=8.64,height=8.41);draw();dev.off()
+png(file.path(out,'clustered_sample_correlation_triangle.png'),width=1900,height=1850,res=220,type='cairo');draw();dev.off()
+cairo_pdf(file.path(out,'clustered_sample_correlation_triangle.pdf'),width=8.64,height=8.41);draw();dev.off()
