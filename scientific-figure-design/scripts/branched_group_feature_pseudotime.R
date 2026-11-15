@@ -43,6 +43,6 @@ draw<-function(){
  text(.805,.48,'Cell subtypes',srt=90,cex=.72)
  yy<-seq(.60,.36,length.out=9);points(rep(.858,9),yy,pch=16,col=colors,cex=1.8);text(.858,yy,1:9,col='white',cex=.73);text(.892,yy,types,adj=0,cex=.77)
 }
-saveRDS(data,file.path(out,'microglia_marker_pseudotime_simulated.rds'))
-png(file.path(out,'microglia_marker_pseudotime.png'),width=810,height=1370,res=160,type='cairo');draw();dev.off()
-cairo_pdf(file.path(out,'microglia_marker_pseudotime.pdf'),width=5.06,height=8.56);draw();dev.off()
+saveRDS(data,file.path(out,'branched_group_feature_pseudotime_simulated.rds'))
+png(file.path(out,'branched_group_feature_pseudotime.png'),width=810,height=1370,res=160,type='cairo');draw();dev.off()
+cairo_pdf(file.path(out,'branched_group_feature_pseudotime.pdf'),width=5.06,height=8.56);draw();dev.off()
