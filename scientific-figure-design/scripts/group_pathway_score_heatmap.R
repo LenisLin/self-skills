@@ -160,4 +160,4 @@ draw_ext7d <- function(data) {
 
 set.seed(20261108)
 data <- simulate_ext7d()
-render_example(data, draw_ext7d, "brain_pathway_activity_heatmap", out, c(12, 10))
+render_example(data, draw_ext7d, "group_pathway_score_heatmap", out, c(12, 10))
