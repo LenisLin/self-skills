@@ -1,6 +1,6 @@
 # CattleCA main Figure 4d: paired expression dot matrices and interaction network.
 # Simulates 48 tissue/cell-type combinations, 13 ligand genes and 19 receptor genes.
-# Run: Rscript goblet_immune_ligand_receptor_interactions.R OUTPUT_DIR
+# Run: Rscript sender_receiver_feature_interaction_dotplot.R OUTPUT_DIR
 # Outputs: PNG, PDF and simulated RDS containing every displayed measurement.
 args <- commandArgs(trailingOnly=TRUE)
 out <- if(length(args)) args[1] else 'figures'
@@ -56,10 +56,10 @@ edges <- data.frame(ligand=c('GZMA','CD6','C5','MIF','MIF','C3','ALCAM','SEMA4A'
  'SEMA4D','LGALS9','LGALS9','LGALS9','GUCA2A','F11R','F11R','CDH1','CDH1','APP'),
  receptor=c('F2R','ALCAM','C5AR1','CXCR4(CD74_)','CD74','C3AR1','CD6','PLXNB2',
  'CD44','HAVCR2','CD44','CD74','GUCY2C','F11R','ITGAL','CDH1','ITGB7','CD74'))
-saveRDS(list(ligand=a,receptor=b,columns=columns,edges=edges,seed=4429),file.path(out,'goblet_immune_ligand_receptor_interactions_simulated.rds'))
+saveRDS(list(ligand=a,receptor=b,columns=columns,edges=edges,seed=4429),file.path(out,'sender_receiver_feature_interaction_dotplot_simulated.rds'))
 palette <- colorRampPalette(c('#A7BFE9','#FFFDFD','#B50025'))(201)
 for(fmt in c('png','pdf')) {
- file<-file.path(out,paste0('goblet_immune_ligand_receptor_interactions.',fmt))
+ file<-file.path(out,paste0('sender_receiver_feature_interaction_dotplot.',fmt))
  if(fmt=='png') png(file,width=1378,height=1020,res=144,type='cairo') else cairo_pdf(file,width=1378/144,height=1020/144)
  grid.newpage();pushViewport(viewport(xscale=c(0,1378),yscale=c(1020,0)))
  text_at <- function(label,x,y,size=8,...) grid.text(label,unit(x,'native'),unit(y,'native'),gp=gpar(fontsize=size,fontfamily='sans'),...)
