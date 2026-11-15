@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # Fig. 2b: subtype-average z-scores, module counts, markers and GO annotations.
-# Usage: Rscript mammary_subtype_marker_heatmap.R OUTPUT_DIR
+# Usage: Rscript group_marker_expression_heatmap.R OUTPUT_DIR
 args <- commandArgs(TRUE); out <- if(length(args)) args[1] else '.'
 dir.create(out,recursive=TRUE,showWarnings=FALSE); set.seed(2329)
 subtypes <- paste0('ME',0:7)
@@ -15,7 +15,7 @@ expr[] <- pmax(-2,pmin(2,expr)); colnames(expr)<-subtypes; rownames(expr)<-paste
 counts <- c(650,580,400,210,200,155,110,140)
 # GO term scores are simulated annotation inputs, shared identically by both devices.
 go_logp <- lapply(1:8,function(i) if(i==2)c(18,17,15.5) else if(i==1)c(4.5,2.8,3.5) else if(i==5)c(3,2.5,2.5) else runif(length(go[[i]]),3,8))
-saveRDS(list(go_log10_adjusted_p=go_logp,expression_z=expr,module=rep(1:8,module_sizes),cell_counts=setNames(counts,subtypes),markers=markers,go=go),file.path(out,'mammary_subtype_marker_heatmap_simulated.rds'))
+saveRDS(list(go_log10_adjusted_p=go_logp,expression_z=expr,module=rep(1:8,module_sizes),cell_counts=setNames(counts,subtypes),markers=markers,go=go),file.path(out,'group_marker_expression_heatmap_simulated.rds'))
 pal <- colorRampPalette(c('#0864a6','#9daaca','#f5f4f4','#da8074','#9d171b'))(256)
 draw <- function(){
  par(mar=rep(0,4),family='sans');plot.new();plot.window(c(0,1),c(0,1),xaxs='i',yaxs='i')
@@ -38,5 +38,5 @@ draw <- function(){
  text(x0+(seq_len(8)-.5)*dx,.046,subtypes,cex=.75);text(x0-.006,.046,'Subtypes',adj=1,cex=.72)
  segments(.59,bot,.88,bot);for(v in c(0,5,10)){segments(.59+v*.016,bot,.59+v*.016,bot-.01);text(.59+v*.016,bot-.025,v,cex=.7)};text(.90,.025,expression(-log[10](P[adj])),cex=.8)
 }
-png(file.path(out,'mammary_subtype_marker_heatmap.png'),width=2000,height=1700,res=220,type='cairo');draw();dev.off()
-cairo_pdf(file.path(out,'mammary_subtype_marker_heatmap.pdf'),width=9.1,height=7.73);draw();dev.off()
+png(file.path(out,'group_marker_expression_heatmap.png'),width=2000,height=1700,res=220,type='cairo');draw();dev.off()
+cairo_pdf(file.path(out,'group_marker_expression_heatmap.pdf'),width=9.1,height=7.73);draw();dev.off()
